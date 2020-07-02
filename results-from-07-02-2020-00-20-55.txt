@@ -1,0 +1,12 @@
+This population needed crossover and mutation
+==================RESULT=====================
+[5 7 1 3 0 6 4 2]
+=============================================
+It took 202 iterations to find the fittest!
+Total time taken 0:00:00.737599
+Configuration for this result
+-----------------------------
+Queens: 8
+Initial Population: 3
+Maximum Iterations allowed: 1000
+-----------------------------
