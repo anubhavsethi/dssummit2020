@@ -2,6 +2,7 @@ import numpy as n
 import random
 import pandas
 import math
+import sys
 from pandas.io.json import json_normalize as js
 from datetime import datetime
 
@@ -230,17 +231,39 @@ def main():
         ITERATION+=1
     
     fittest=scoresheet.index[scoresheet['Score']==0].tolist()
+    
+    standard_stdout=sys.stdout
+    result="results-from-"+str(datetime.now().strftime("%m-%d-%Y-%H-%M-%S"))+".txt"
+
     for l in fittest:
-        if ITERATION > 0:
-            print("This population needed crossover and mutation")
-            print(n.asanyarray(crossover_population[l]))
-            print("It took "+str(ITERATION)+" iterations to find the fittest!")
-            print("Total time taken "+str(datetime.now()-start_timestamp))
-        else:
-            print(n.asarray(probable_candidates[l]))
-            print("It took "+str(ITERATION)+" iterations to find the fittest!")
-            print("Total time taken "+str(datetime.now()-start_timestamp))
-       
+        with open(result, 'w') as commitresult:
+            sys.stdout=commitresult    
+            if ITERATION > 0:
+                print("This population needed crossover and mutation")
+                print("==================RESULT=====================")
+                print(n.asanyarray(crossover_population[l]))
+                print("=============================================")
+                print("It took "+str(ITERATION)+" iterations to find the fittest!")
+                print("Total time taken "+str(datetime.now()-start_timestamp))
+                print("Configuration for this result")
+                print("-----------------------------")
+                print("Queens: "+str(QUEENS))
+                print("Initial Population: "+str(POPULATION))
+                print("Maximum Iterations allowed: "+str(THRESHOLD))
+                print("-----------------------------")
+            else:
+                print("==================RESULT=====================")
+                print(n.asarray(probable_candidates[l]))
+                print("=============================================")
+                print("It took "+str(ITERATION)+" iterations to find the fittest!")
+                print("Total time taken "+str(datetime.now()-start_timestamp))
+                print("Configuration for this result")
+                print("-----------------------------")
+                print("Queens: "+str(QUEENS))
+                print("Initial Population: "+str(POPULATION))
+                print("Maximum Iterations allowed: "+str(THRESHOLD))
+                print("-----------------------------")
+            sys.stdout=standard_stdout 
 
 if __name__=="__main__":
     main()
