@@ -243,6 +243,4 @@ def main():
        
 
 if __name__=="__main__":
-    #main()
-    test_list=[[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1]]
-    crossmutate(test_list,0.8)
+    main()
